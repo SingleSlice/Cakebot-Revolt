@@ -1,7 +1,7 @@
 import commandDir.insertChar as insertChar
 import commandDir.help as help
 import commandDir.hugs as hugs
-import database
+import commandDir.database as database
 import configCakebot
 
 cakebotDB = database.databaseClient(configCakebot.connectionString, configCakebot.serverDatabase, configCakebot.userDatabase)
@@ -20,3 +20,5 @@ async def commandExecuter(message, prefix):
         await message.reply("there, there\n" + hugs.get_rand_hug())
     elif command == "insertChar":
         await insertChar.insertChar(message, args, cakebotDB)
+    elif command == "myChars":
+        cakebotDB.getCharactersFromUser(message.author.id)

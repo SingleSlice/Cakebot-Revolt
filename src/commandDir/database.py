@@ -17,3 +17,10 @@ class databaseClient:
             "ownerID"   :   ownerID,
             "name"      :   characterName
             })
+    
+    def getCharactersFromUser(self, ownerID):
+        query = {"ownerID" : ownerID}
+        afterQuery = self.userDB.get_collection("characters").find(query)
+
+        for oc in afterQuery:
+            print(oc)
