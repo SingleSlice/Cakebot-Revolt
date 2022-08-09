@@ -1,8 +1,10 @@
-import commandDir.insertChar as insertChar
+import configCakebot
+import commandDir.database as database
+import commandDir.insertChar as insertchar
+import commandDir.mychar as mychar
+import commandDir.deleteChar as deletechar
 import commandDir.help as help
 import commandDir.hugs as hugs
-import commandDir.database as database
-import configCakebot
 
 cakebotDB = database.databaseClient(configCakebot.connectionString, configCakebot.serverDatabase, configCakebot.userDatabase)
 
@@ -18,7 +20,9 @@ async def commandExecuter(message, prefix):
         await message.reply("wenomachinesama")
     elif command == "hugs":
         await message.reply("there, there\n" + hugs.get_rand_hug())
-    elif command == "insertChar":
-        await insertChar.insertChar(message, args, cakebotDB)
+    elif command == "createChar":
+        await insertchar.insertChar(message, args, cakebotDB)
+    elif command == "deleteChar":
+        await deletechar.deleteChar(message, args, cakebotDB)
     elif command == "myChars":
-        cakebotDB.getCharactersFromUser(message.author.id)
+        await mychar.mychar(message, cakebotDB)
