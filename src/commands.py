@@ -3,6 +3,7 @@ import commandDir.database as database
 import commandDir.insertChar as insertchar
 import commandDir.mychar as mychar
 import commandDir.deleteChar as deletechar
+import commandDir.sendAsChar as sendaschar
 import commandDir.help as help
 import commandDir.hugs as hugs
 
@@ -26,3 +27,5 @@ async def commandExecuter(message, prefix):
         await deletechar.deleteChar(message, args, cakebotDB)
     elif command == "myChars":
         await mychar.mychar(message, cakebotDB)
+    elif command == "send":
+        await sendaschar.sendAsChar(message,args,cakebotDB)

@@ -11,11 +11,12 @@ class databaseClient:
 
 
     def insertCharacter(self, ownerID, characterName):
-        characterID = self.userDB.get_collection("characters").count_documents({}) + 1
-
         self.userDB.get_collection("characters").insert_one({
             "ownerID"   :   ownerID,
-            "name"      :   characterName
+            "name"      :   characterName,
+            "picture"   :   "https://i.imgur.com/Gew7Bmk.jpeg",
+            "bio"       :   "placeholder",
+            "other"     :   "placeholder"
         })
 
 
