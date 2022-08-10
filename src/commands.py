@@ -17,8 +17,6 @@ async def commandExecuter(message, prefix):
 
     if command == "help":
         await message.reply(content = "here is the help you needed, meow~", embed = help.embed)
-    elif command == "wenomachinesama":
-        await message.reply("wenomachinesama")
     elif command == "hugs":
         await message.reply("there, there\n" + hugs.get_rand_hug())
     elif command == "createChar":
