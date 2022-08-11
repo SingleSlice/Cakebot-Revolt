@@ -12,7 +12,7 @@ its function are:
 
 ##  hosting your own instance of this bot.
 
-clone this repo, and install the following dependencies
+clone this repo, and install the following python dependencies
 -   voltage==0.1.5a8
 -   pymongo==4.2.0
 
