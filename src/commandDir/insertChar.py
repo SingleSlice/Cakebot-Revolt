@@ -11,6 +11,7 @@ async def insertChar(message, args, cakebotDB):
             
             if args[0] not in names:
                 cakebotDB.insertCharacter(message.author.id, args[0])
+                print(f"new char {message.author.id}, {args[0]}")
                 await message.reply(f"your character, _{args[0]}_, has been created.")
             else:
                 await message.reply(f"you already own a character named, _{args[0]}_")
