@@ -7,7 +7,7 @@ async def sendAsChar(message, args, cakebotDB):
     else: # if it exists, it executes this section of code
         try: args[1]
         except IndexError:
-            await message.reply("cakebot does not support sending pictures at this time and empty messages.")
+            await message.reply(content = "This command requires a message to output, ex. \n=>send imposter amongus is a very nice game")
 
         else:
             characters = cakebotDB.getCharactersFromUser(message.author.id)
@@ -15,16 +15,16 @@ async def sendAsChar(message, args, cakebotDB):
             for char in characters:
                 names.append(char["name"])
 
-            if args[0] in names:
+            if args[0] in names: # checks if the argument is in the list of characters
                 for char in characters:
                     if char["name"] == args[0]:
                         char_name = char["name"]
                         char_pic = char["picture"]
-                        
+
                 masq = voltage.MessageMasquerade(name=char_name, avatar=char_pic)
 
                 message_to_send = message.content[len(configCakebot.prefix)+4+1+len(args[0])+1:] # removes the prefix, command name and leaves only the intended message.
-                await message.channel.send(content = message_to_send , masquerade = masq)
-
+                await message.channel.send(content = message_to_send , masquerade = masq) # check if the server has masquerade enabled
+                await message.delete()
             else:
                 await message.channel.send(f"no character named _{args[0]}_ found")

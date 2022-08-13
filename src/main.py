@@ -8,7 +8,7 @@ prefix = configCakebot.prefix
 
 @cakebot.listen("ready")
 async def on_ready():
-    print("CakeBot online")
+    await cakebot.set_status(prefix + "help")
 
 @cakebot.listen("message")
 async def on_message(message):
