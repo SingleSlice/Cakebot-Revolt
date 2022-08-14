@@ -1,16 +1,19 @@
 import voltage
-import configCakebot
 
-async def sendAsChar(message, args, cakebotDB):
-    try: args[0] # checks if the character's name argument exists
-    except IndexError: await message.reply("this command requires a character name to work. ex.\n =>send imposter amongus is a very nice game")
+async def send_as_char(message, args, database, config):
+    """sends messages as choosen character"""
+    try:
+        args[0] # checks if the character's name argument exists
+    except IndexError:
+        await message.reply("this command requires a character name to work. ex.\n =>send imposter amongus is a very nice game")
     else: # if it exists, it executes this section of code
-        try: args[1]
+        try:
+            args[1]
         except IndexError:
             await message.reply(content = "This command requires a message to output, ex. \n=>send imposter amongus is a very nice game")
 
         else:
-            characters = cakebotDB.getCharactersFromUser(message.author.id)
+            characters = database.getCharactersFromUser(message.author.id)
             names = []
             for char in characters:
                 names.append(char["name"])
@@ -23,7 +26,7 @@ async def sendAsChar(message, args, cakebotDB):
 
                 masq = voltage.MessageMasquerade(name=char_name, avatar=char_pic)
 
-                message_to_send = message.content[len(configCakebot.prefix)+4+1+len(args[0])+1:] # removes the prefix, command name and leaves only the intended message.
+                message_to_send = message.content[len(config.prefix)+4+1+len(args[0])+1:] # removes the prefix, command name and leaves only the intended message.
                 await message.channel.send(content = message_to_send , masquerade = masq) # check if the server has masquerade enabled
                 await message.delete()
             else:
