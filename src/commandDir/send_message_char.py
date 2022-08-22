@@ -25,9 +25,15 @@ async def send_as_char(message, args, database, config):
                         char_pic = char["picture"]
 
                 masq = voltage.MessageMasquerade(name=char_name, avatar=char_pic)
-
                 message_to_send = message.content[len(config.prefix)+4+1+len(args[0])+1:] # removes the prefix, command name and leaves only the intended message.
-                await message.channel.send(content = message_to_send , masquerade = masq) # check if the server has masquerade enabled
-                await message.delete()
+                try:
+                    message.replies[0]
+                except IndexError:
+                    await message.channel.send(content = message_to_send , masquerade = masq) # check if the server has masquerade enabled
+                    await message.delete()
+                else:
+                    await message.replies[0].reply(content = message_to_send , masquerade = masq) # check if the server has masquerade enabled
+                    await message.delete()
+
             else:
                 await message.channel.send(f"no character named _{args[0]}_ found")
