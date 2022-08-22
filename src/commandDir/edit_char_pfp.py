@@ -21,7 +21,7 @@ async def edit_char_pfp(message, args, database):
             if args[0] in names:
                 if picture.type is voltage.AssetType.image:
                     database.edit_field(message.author.id, args[0], "picture", picture.url)
-                    await message.reply("Your profile picture has been changed successfully")
+                    await message.reply(f"{args[0]}'s profile picture has been changed successfully")
                 else:
                     await message.reply("The attachment is not a valid picture")
             else:
