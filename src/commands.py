@@ -1,14 +1,14 @@
 """commands"""
 import configCakebot
-import commandDir.database as database
+from commandDir import database
 import commandDir.insert_char as insertchar
-import commandDir.my_char as my_char
+from commandDir import my_char
 import commandDir.delete_char as deletechar
 import commandDir.send_message_char as sendaschar
 import commandDir.help as help_com
-import commandDir.hugs as hugs
+from commandDir import hugs
 
-cakeDatabase = database.databaseClient(configCakebot.connectionString,\
+cakeDatabase = database.DatabaseClient(configCakebot.connectionString,\
     configCakebot.serverDatabase, configCakebot.userDatabase)
 
 async def command_executer(message, prefix):

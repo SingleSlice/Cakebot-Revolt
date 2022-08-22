@@ -13,7 +13,7 @@ async def send_as_char(message, args, database, config):
             await message.reply(content = "This command requires a message to output, ex. \n=>send imposter amongus is a very nice game")
 
         else:
-            characters = database.getCharactersFromUser(message.author.id)
+            characters = database.get_char_from_user(message.author.id)
             names = []
             for char in characters:
                 names.append(char["name"])

@@ -1,7 +1,7 @@
 """char"""
 async def my_char(message, database):
     """sends characters"""
-    characters = database.getCharactersFromUser(message.author.id)
+    characters = database.get_char_from_user(message.author.id)
 
     if len(characters) != 0 :
         line_to_send = "master~ here are your characters : \n   "

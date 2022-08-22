@@ -7,12 +7,12 @@ async def insert_char(message, args, database, config):
         await message.channel.send("this command needs the 'name' argument, example\n=>nsertChar \
             Cake")
     else:
-        if len(database.getCharactersFromUser(message.author.id)) < config.max_oc_user:
+        if len(database.get_char_from_user(message.author.id)) < config.max_oc_user:
             names = []
-            for char in database.getCharactersFromUser(message.author.id):
+            for char in database.get_char_from_user(message.author.id):
                 names.append(char["name"])
             if args[0] not in names:
-                database.insertCharacter(message.author.id, args[0])
+                database.insert_character(message.author.id, args[0])
                 print(f"new char {message.author.id}, {args[0]}")
                 await message.reply(f"your character, _{args[0]}_, has been created.")
             else:

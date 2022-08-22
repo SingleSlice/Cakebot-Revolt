@@ -7,10 +7,10 @@ async def delete_char(message, args, database):
         await message.reply("this command needs the 'name' argument, example\n deleteChar Cake")
     else:
         names = []
-        for char in database.getCharactersFromUser(message.author.id):
+        for char in database.get_char_from_user(message.author.id):
             names.append(char["name"])
         if args[0] in names:
-            database.deleteCharacterFromUser(message.author.id, args[0])
+            database.delete_character_from_user(message.author.id, args[0])
             await message.reply("master! your character _" + args[0] + "_ has been deleted!")
         else: await message.channel.send("master, you do not own any character named _" + \
             args[0] + "_")
