@@ -3,6 +3,7 @@ import configCakebot
 from commandDir import database
 import commandDir.insert_char as insertchar
 from commandDir import my_char
+from commandDir import edit_char_pfp
 import commandDir.delete_char as deletechar
 import commandDir.send_message_char as sendaschar
 import commandDir.help as help_com
@@ -30,3 +31,5 @@ async def command_executer(message, prefix):
             await my_char.my_char(message, cakeDatabase)
         elif command == "send":
             await sendaschar.send_as_char(message,args,cakeDatabase, configCakebot)
+        elif command == "editcharpfp":
+            await edit_char_pfp.edit_char_pfp(message, args, cakeDatabase)

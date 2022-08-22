@@ -1,4 +1,6 @@
 """inserts character in the database"""
+
+
 async def insert_char(message, args, database, config):
     """inserts character in the database"""
     try:
