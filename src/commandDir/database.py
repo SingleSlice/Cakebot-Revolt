@@ -24,23 +24,24 @@ class DatabaseClient:
 
 
     def edit_field(self, ownerid, character_name, field, value):
-        #todo
         """edits a field"""
-        return
+        query = {"ownerID": ownerid, "name": character_name}
+        changed_field = {"$set": {field: value}}
 
+        self.user_db.get_collection("characters").update_one(query, changed_field)
 
     def delete_character_from_user(self, ownerid, character_name):
         """deletes character from the database"""
-        query = {"ownerID" : ownerid, "name" : character_name} # gets characters that the user owns
+        query = {"ownerID": ownerid, "name": character_name}  # gets characters that the user owns
         character_query = self.user_db.get_collection("characters").find(query)
         character = list(character_query)[0]
 
-        self.user_db.get_collection("characters").delete_one({"_id" : character["_id"]}) # yeets oc
+        self.user_db.get_collection("characters").delete_one({"_id": character["_id"]})  # yeets oc
 
 
     def get_char_from_user(self, ownerid):
         """gets character array from user"""
-        query = {"ownerID" : ownerid}
+        query = {"ownerID": ownerid}
         character_query = self.user_db.get_collection("characters").find(query)
         list_of_chars = list(character_query)
 

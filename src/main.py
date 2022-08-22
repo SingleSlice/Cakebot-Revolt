@@ -7,10 +7,12 @@ import configCakebot
 cakebot = voltage.Client()
 PREFIX = configCakebot.prefix
 
+
 @cakebot.listen("ready")
 async def on_ready():
     """on ready"""
     await cakebot.set_status(PREFIX + "help")
+
 
 @cakebot.listen("message")
 async def on_message(message):
