@@ -1,5 +1,5 @@
 help = """
-### - hug.\n
+### - hugs.\n
 the hug command sends a random gif of an hug.\n
 ### - createChar.\n
 The create char command allows you to create a new character.\n

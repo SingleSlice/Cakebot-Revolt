@@ -6,8 +6,8 @@ async def insert_char(message, args, database, config):
     try:
         args[0]
     except IndexError:
-        await message.channel.send("this command needs the 'name' argument, example\n=>nsertChar \
-            Cake")
+        await message.channel.send("this command needs the 'short_name' argument, example\n=>insertChar \
+            ck")
     else:
         if len(database.get_char_from_user(message.author.id)) < config.max_oc_user:
             names = []
@@ -18,7 +18,7 @@ async def insert_char(message, args, database, config):
                 print(f"new char {message.author.id}, {args[0]}")
                 await message.reply(f"your character, _{args[0]}_, has been created.")
             else:
-                await message.reply(f"you already own a character named, _{args[0]}_")
+                await message.reply(f"you already own a character with the shortname, _{args[0]}_")
 
         else:
             await message.channel.send("you already have reached the maximum number of OCs")

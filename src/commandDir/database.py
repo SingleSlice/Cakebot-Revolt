@@ -15,15 +15,20 @@ class DatabaseClient:
     def insert_character(self, ownerid, character_name):
         """insert character in the database"""
         self.user_db.get_collection("characters").insert_one({
-            "ownerID"   :   ownerid,
-            "name"      :   character_name,
-            "picture"   :   "https://i.imgur.com/Gew7Bmk.jpeg",
-            "bio"       :   "placeholder",
-            "other"     :   "placeholder"
+            "ownerID"       :   ownerid,
+            "name"          :   character_name,
+            "display-name"  :   character_name,
+            "picture"       :   "https://i.imgur.com/Gew7Bmk.jpeg",
+            "bio"           :   "placeholder",
         })
 
+    def update_character_fields(self):
+        characters = list(self.user_db.get_collection("characters").find({}))
+        for char in characters:
+            print(char)
+            self.user_db.get_collection("characters").update_many({"_id": char["_id"] }, {"$set": {"display-name": char["name"] }})
 
-    def edit_field(self, ownerid, character_name, field, value):
+    def edit_character_field(self, ownerid, character_name, field, value):
         """edits a field"""
         query = {"ownerID": ownerid, "name": character_name}
         changed_field = {"$set": {field: value}}
@@ -46,3 +51,11 @@ class DatabaseClient:
         list_of_chars = list(character_query)
 
         return list_of_chars
+
+    def insert_device(self, ownerid, device_name):
+        """insert device in the database"""
+        self.user_db.get_collection("specfetch").insert_one({
+            "ownerID"   :   ownerid,
+            "name"      :   device_name,
+            "os_pic"    :   "placeholder"
+        })
